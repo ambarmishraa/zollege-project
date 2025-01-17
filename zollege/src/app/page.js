@@ -1,14 +1,19 @@
-// src/app/page.js
-
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { db } from "./lib/firebase"; // Import your Firebase setup
 import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
+import NewsComponent from "./components/NewsComponent"; // Import the NewsComponent
+import PayoutComponent from "./components/PayoutComponent";
 
 export default function HomePage() {
   const [message, setMessage] = useState("");
+  const [articles, setArticles] = useState([
+    // Sample articles (replace with actual fetched data)
+    { id: 1, title: "Breaking News", author: "John Doe", type: "News" },
+    { id: 2, title: "Tech Trends", author: "Jane Smith", type: "Blog" },
+  ]);
 
   const handleGoogleSignIn = async () => {
     const auth = getAuth();
@@ -49,6 +54,12 @@ export default function HomePage() {
       <h1>Welcome to the Dashboard</h1>
       <button onClick={handleGoogleSignIn}>Sign in with Google</button>
       <p>{message}</p>
+      
+      {/* News Component */}
+      <NewsComponent />
+
+      {/* Payout Component */}
+      <PayoutComponent articles={articles} />
     </div>
   );
 }
