@@ -1,4 +1,6 @@
 // NewsComponent.js
+
+"use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Bar, Pie, Line } from "react-chartjs-2";
