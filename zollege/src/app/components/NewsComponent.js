@@ -2,11 +2,11 @@
 
 "use client";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from "chart.js";
 import styles from '../page.module.css';
+import { useRouter } from "next/navigation";
 
 // Register Chart.js components
 ChartJS.register(
@@ -46,6 +46,12 @@ export default function NewsComponent() {
         fetchArticles();
     }, []);
 
+    const router = useRouter();
+
+    const handleLogout = () => {
+        router.push("/");
+    };
+    
     const applyFilters = () => {
         let filtered = [...articles];
 
@@ -166,8 +172,8 @@ export default function NewsComponent() {
     return (
         <div className={styles.productListing}>
             <h1 style={{ paddingBottom: "20px", display: "flex", justifyContent: "center", paddingTop: "20px" }}>News and Blogs</h1>
-            <div style={{display:"flex", justifyContent:"space-evenly", paddingBottom:"20px", cursor:"pointer"}}>
-                <h5>Logout</h5>
+            <div style={{ display: "flex", justifyContent: "space-evenly", paddingBottom: "20px", cursor: "pointer" }}>
+                <h5 onClick={handleLogout}>Logout</h5>
                 <h5>PayOut Calculator</h5>
             </div>
 
@@ -216,39 +222,39 @@ export default function NewsComponent() {
             {/* Filters */}
             <div style={{ paddingBottom: "20px", display: "flex", justifyContent: "space-evenly" }} >
                 <input
-                style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px"}}
+                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
                     type="text"
                     placeholder="Search by Author"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                 />
                 <input
-                style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px"}}
+                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
                     type="text"
                     placeholder="Search by Type (e.g., news, blog)"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                 />
                 <input
-                style={{borderRadius:"10px", border:"none", padding:"10px"}}
+                    style={{ borderRadius: "10px", border: "none", padding: "10px" }}
                     type="date"
                     value={dateRange.start}
                     onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
                 />
                 <input
-                style={{borderRadius:"10px", border:"none", padding:"10px",}}
+                    style={{ borderRadius: "10px", border: "none", padding: "10px", }}
                     type="date"
                     value={dateRange.end}
                     onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
                 />
                 <input
-                style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px"}}
+                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
                     type="text"
                     placeholder="Search by Keyword"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px",color:"black"}} onClick={applyFilters}>Apply Filters</button>
+                <button style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px", color: "black" }} onClick={applyFilters}>Apply Filters</button>
             </div>
 
 
@@ -270,15 +276,15 @@ export default function NewsComponent() {
                                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
                             }}
                         >
-                            <h3 style={{marginBottom:"10px"}}>{article.title}</h3>
-                            <p style={{marginBottom:"10px"}}>{article.description}</p>
-                            <p style={{marginBottom:"5px"}}>
+                            <h3 style={{ marginBottom: "10px" }}>{article.title}</h3>
+                            <p style={{ marginBottom: "10px" }}>{article.description}</p>
+                            <p style={{ marginBottom: "5px" }}>
                                 <strong>Author:</strong> {article.author || "Unknown"}
                             </p>
-                            <p style={{marginBottom:"5px"}}>
+                            <p style={{ marginBottom: "5px" }}>
                                 <strong>Date:</strong> {new Date(article.publishedAt).toDateString()}
                             </p>
-                            <p style={{marginBottom:"5px"}}>
+                            <p style={{ marginBottom: "5px" }}>
                                 <strong>Type:</strong> {article.type || "News"}
                             </p>
                         </div>
