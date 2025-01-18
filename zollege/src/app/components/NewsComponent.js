@@ -188,15 +188,15 @@ export default function NewsComponent() {
             <div style={{ display: "flex", justifyContent: "space-evenly" }}>
                 <div className={styles.articleChart}>
                     {!errorMessage && (
-                        <div style={{ width: "30%" }}>
-                            <h2 style={{ color: "black", paddingBottom: "15px" }}>Article Trends by Type</h2>
+                        <div className={styles.chartCss}>
+                            <h2>Article Trends by Type</h2>
                             <Bar data={generateTypeChartData()} options={{ responsive: true }} />
                         </div>
                     )}
 
                     {!errorMessage && (
-                        <div style={{ width: "15%" }}>
-                            <h2 style={{ color: "black", paddingBottom: "15px" }}>Article Trends</h2>
+                        <div className={styles.chartPie}>
+                            <h2>Article Trends</h2>
                             <Pie
                                 data={generateAuthorChartData()}
                                 options={{
@@ -215,8 +215,8 @@ export default function NewsComponent() {
                     )}
 
                     {!errorMessage && (
-                        <div style={{ width: "30%" }}>
-                            <h2 style={{ color: "black", paddingBottom: "15px" }}>Articles Over Time</h2>
+                        <div className={styles.chartCss}>
+                            <h2>Articles Over Time</h2>
                             <Line data={generateTimeChartData()} options={{ responsive: true }} />
                         </div>
                     )}
