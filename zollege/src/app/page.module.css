@@ -166,3 +166,55 @@ a.secondary {
     filter: invert();
   }
 }
+
+.dashboard{
+  color: white;
+  position: relative;
+  top: 18%;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/dashboard.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+.signButton{
+  display: flex;
+  justify-content: center;
+  top: 33%;
+  right: 5px;
+  position: relative;
+}
+
+.buttonSign{
+  background-color: transparent;
+  border: none;
+}
+
+.buttonImage{
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+}
+
+.productListing{
+  /* background-color: #f0f8ff; */
+  background-color: black;
+}
+
+.articleChart{
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px 0px 50px 0px;
+  gap: 40px;
+}

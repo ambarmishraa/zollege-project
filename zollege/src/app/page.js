@@ -5,6 +5,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { db } from "./lib/firebase"; // Import your Firebase setup
 import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
 import { useRouter } from "next/navigation"; // Correct import for the app directory
+import styles from "./page.module.css"; 
 
 export default function HomePage() {
   const [message, setMessage] = useState("");
@@ -52,14 +53,17 @@ export default function HomePage() {
       }
     } catch (error) {
       console.error("Error during Google sign-in:", error.message);
-      setMessage("Error during sign-in.");
     }
   };
 
   return (
-    <div>
-      <h1>Welcome to the Dashboard</h1>
-      <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+    <div className={styles.container}>
+      <h1 className={styles.dashboard}>Ready For Ride</h1>
+      <div className={styles.signButton}>
+      <button className={styles.buttonSign} onClick={handleGoogleSignIn}>
+        <img src="/google.png" alt="Google Sign In" className={styles.buttonImage} />
+      </button>
+      </div>
       <p>{message}</p>
       
       {/* You can still display the NewsComponent in the current page if you want */}

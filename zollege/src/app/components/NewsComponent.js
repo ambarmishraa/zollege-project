@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from "chart.js";
+import styles from '../page.module.css';
 
 // Register Chart.js components
 ChartJS.register(
@@ -162,14 +163,14 @@ export default function NewsComponent() {
     };
 
     return (
-        <div>
-            <h1>News and Blogs</h1>
+        <div className={styles.productListing}>
+            <h1 style={{paddingBottom: "15px",display:"flex",justifyContent:"center"}}>News and Blogs</h1>
 
             {/* Error Message Display */}
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
             {/* Filters */}
-            <div>
+            <div style={{paddingBottom: "20px",display: "flex", justifyContent: "space-evenly"}} >
                 <input
                     type="text"
                     placeholder="Search by Author"
@@ -202,17 +203,18 @@ export default function NewsComponent() {
             </div>
 
             {/* Multiple Charts */}
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", justifyContent: "space-evenly"}}>
+                <div className={styles.articleChart}>
                 {!errorMessage && (
-                    <div style={{ width: "30%" }}>
-                        <h2>Article Trends by Type</h2>
+                    <div  style={{ width: "30%" }}>
+                        <h2 style={{color:"black",paddingBottom: "15px"}}>Article Trends by Type</h2>
                         <Bar data={generateTypeChartData()} options={{ responsive: true }} />
                     </div>
                 )}
 
                 {!errorMessage && (
                     <div style={{ width: "15%" }}>
-                        <h2>Article Trends</h2>
+                        <h2 style={{color:"black",paddingBottom: "15px"}}>Article Trends</h2>
                         <Pie
                             data={generateAuthorChartData()}
                             options={{
@@ -232,10 +234,11 @@ export default function NewsComponent() {
 
                 {!errorMessage && (
                     <div style={{ width: "30%" }}>
-                        <h2>Articles Over Time</h2>
+                        <h2 style={{color:"black",paddingBottom: "15px"}}>Articles Over Time</h2>
                         <Line data={generateTimeChartData()} options={{ responsive: true }} />
                     </div>
                 )}
+                </div>
             </div>
 
 
