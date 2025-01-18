@@ -164,98 +164,116 @@ export default function NewsComponent() {
 
     return (
         <div className={styles.productListing}>
-            <h1 style={{paddingBottom: "15px",display:"flex",justifyContent:"center"}}>News and Blogs</h1>
+            <h1 style={{ paddingBottom: "20px", display: "flex", justifyContent: "center", paddingTop: "20px" }}>News and Blogs</h1>
 
             {/* Error Message Display */}
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
+            {/* Multiple Charts */}
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <div className={styles.articleChart}>
+                    {!errorMessage && (
+                        <div style={{ width: "30%" }}>
+                            <h2 style={{ color: "black", paddingBottom: "15px" }}>Article Trends by Type</h2>
+                            <Bar data={generateTypeChartData()} options={{ responsive: true }} />
+                        </div>
+                    )}
+
+                    {!errorMessage && (
+                        <div style={{ width: "15%" }}>
+                            <h2 style={{ color: "black", paddingBottom: "15px" }}>Article Trends</h2>
+                            <Pie
+                                data={generateAuthorChartData()}
+                                options={{
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            display: false, // Hides the legend
+                                        },
+                                        tooltip: {
+                                            enabled: false, // Disables tooltips
+                                        },
+                                    },
+                                }}
+                            />
+                        </div>
+                    )}
+
+                    {!errorMessage && (
+                        <div style={{ width: "30%" }}>
+                            <h2 style={{ color: "black", paddingBottom: "15px" }}>Articles Over Time</h2>
+                            <Line data={generateTimeChartData()} options={{ responsive: true }} />
+                        </div>
+                    )}
+                </div>
+            </div>
+
             {/* Filters */}
-            <div style={{paddingBottom: "20px",display: "flex", justifyContent: "space-evenly"}} >
+            <div style={{ paddingBottom: "20px", display: "flex", justifyContent: "space-evenly" }} >
                 <input
+                style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px"}}
                     type="text"
                     placeholder="Search by Author"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                 />
                 <input
+                style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px"}}
                     type="text"
                     placeholder="Search by Type (e.g., news, blog)"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                 />
                 <input
+                style={{borderRadius:"10px", border:"none", padding:"10px"}}
                     type="date"
                     value={dateRange.start}
                     onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
                 />
                 <input
+                style={{borderRadius:"10px", border:"none", padding:"10px",}}
                     type="date"
                     value={dateRange.end}
                     onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
                 />
                 <input
+                style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px"}}
                     type="text"
                     placeholder="Search by Keyword"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button onClick={applyFilters}>Apply Filters</button>
-            </div>
-
-            {/* Multiple Charts */}
-            <div style={{ display: "flex", justifyContent: "space-evenly"}}>
-                <div className={styles.articleChart}>
-                {!errorMessage && (
-                    <div  style={{ width: "30%" }}>
-                        <h2 style={{color:"black",paddingBottom: "15px"}}>Article Trends by Type</h2>
-                        <Bar data={generateTypeChartData()} options={{ responsive: true }} />
-                    </div>
-                )}
-
-                {!errorMessage && (
-                    <div style={{ width: "15%" }}>
-                        <h2 style={{color:"black",paddingBottom: "15px"}}>Article Trends</h2>
-                        <Pie
-                            data={generateAuthorChartData()}
-                            options={{
-                                responsive: true,
-                                plugins: {
-                                    legend: {
-                                        display: false, // Hides the legend
-                                    },
-                                    tooltip: {
-                                        enabled: false, // Disables tooltips
-                                    },
-                                },
-                            }}
-                        />
-                    </div>
-                )}
-
-                {!errorMessage && (
-                    <div style={{ width: "30%" }}>
-                        <h2 style={{color:"black",paddingBottom: "15px"}}>Articles Over Time</h2>
-                        <Line data={generateTimeChartData()} options={{ responsive: true }} />
-                    </div>
-                )}
-                </div>
+                <button style={{borderRadius:"10px", backgroundColor:"white", border:"none", padding:"10px",color:"black"}} onClick={applyFilters}>Apply Filters</button>
             </div>
 
 
             {/* Articles */}
-            <div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center" }}>
                 {filteredArticles.length > 0 ? (
                     filteredArticles.map((article, index) => (
-                        <div key={index} style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}>
-                            <h3>{article.title}</h3>
-                            <p>{article.description}</p>
-                            <p>
+                        <div
+                            key={index}
+                            style={{
+                                border: "1px solid #ccc",
+                                padding: "10px",
+                                margin: "10px",
+                                width: "20%", // Adjust width to make space for 4 boxes in a row
+                                boxSizing: "border-box", // Ensure padding and border are included in width calculation
+                                borderRadius: "10px",
+                                color: "#333",
+                                background: "linear-gradient(45deg, #ffe680, #ffb380)",
+                                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
+                            }}
+                        >
+                            <h3 style={{marginBottom:"10px"}}>{article.title}</h3>
+                            <p style={{marginBottom:"10px"}}>{article.description}</p>
+                            <p style={{marginBottom:"5px"}}>
                                 <strong>Author:</strong> {article.author || "Unknown"}
                             </p>
-                            <p>
+                            <p style={{marginBottom:"5px"}}>
                                 <strong>Date:</strong> {new Date(article.publishedAt).toDateString()}
                             </p>
-                            <p>
+                            <p style={{marginBottom:"5px"}}>
                                 <strong>Type:</strong> {article.type || "News"}
                             </p>
                         </div>
@@ -264,6 +282,7 @@ export default function NewsComponent() {
                     <p>No articles found.</p>
                 )}
             </div>
+
         </div>
     );
 }
