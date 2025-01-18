@@ -122,42 +122,116 @@ export default function PayoutComponent({ articles }) {
     payout: (payoutRates[article.author] || 0).toFixed(2),
   }));
 
+  // Inline styles object
+  const styles = {
+    container: {
+      maxWidth: "900px",
+      margin: "0 auto",
+      padding: "20px",
+      backgroundColor: "#fff",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      color:"black",
+    },
+    table: {
+      width: "100%",
+      borderCollapse: "collapse",
+      marginTop: "20px",
+    },
+    th: {
+      padding: "12px",
+      textAlign: "left",
+      backgroundColor: "#007bff",
+      color: "white",
+      fontSize: "16px",
+    },
+    td: {
+      padding: "12px",
+      textAlign: "left",
+      borderBottom: "1px solid #ddd",
+    },
+    trEven: {
+      backgroundColor: "#f9f9f9",
+    },
+    input: {
+      padding: "6px",
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      width: "100px",
+      fontSize: "14px",
+    },
+    inputFocus: {
+      outline: "none",
+      borderColor: "#007bff",
+    },
+    button: {
+      backgroundColor: "#007bff",
+      color: "white",
+      border: "none",
+      padding: "10px 15px",
+      fontSize: "14px",
+      borderRadius: "4px",
+      cursor: "pointer",
+      marginTop: "20px",
+    },
+    buttonHover: {
+      backgroundColor: "#0056b3",
+    },
+    totalPayout: {
+      marginTop: "20px",
+      fontSize: "18px",
+      fontWeight: "bold",
+      color: "#333",
+    },
+  };
+
   return (
-    <div>
+    <div style={styles.container}>
       <h2>Payout Calculator</h2>
-      <table>
+      <table style={styles.table}>
         <thead>
           <tr>
-            <th>Author</th>
-            <th>Articles</th>
-            <th>Rate</th>
-            <th>Payout</th>
+            <th style={styles.th}>Author</th>
+            <th style={styles.th}>Articles</th>
+            <th style={styles.th}>Rate</th>
+            <th style={styles.th}>Payout</th>
           </tr>
         </thead>
         <tbody>
           {articles.map((article) => (
-            <tr key={article.id}>
-              <td>{article.author}</td>
-              <td>{article.title}</td>
-              <td>
+            <tr key={article.id} style={article.id % 2 === 0 ? styles.trEven : {}}>
+              <td style={styles.td}>{article.author}</td>
+              <td style={styles.td}>{article.title}</td>
+              <td style={styles.td}>
                 <input
                   type="number"
+                  style={styles.input}
                   value={payoutRates[article.author] || ""}
                   onChange={(e) =>
                     handleRateChange(article.author, e.target.value)
                   }
                 />
               </td>
-              <td>{(payoutRates[article.author] || 0).toFixed(2)} USD</td>
+              <td style={styles.td}>{(payoutRates[article.author] || 0).toFixed(2)} USD</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <h3>Total Payout: {totalPayout.toFixed(2)} USD</h3>
+      <div style={styles.totalPayout}>
+        <h3>Total Payout: {totalPayout.toFixed(2)} USD</h3>
+      </div>
 
-      <button onClick={() => exportToPDF(payoutDetails, totalPayout)}>Export to PDF</button>
-      <button onClick={() => exportToCSV(payoutDetails, totalPayout)}>Export to CSV</button>
-      <button onClick={() => exportToGoogleSheets(payoutDetails, totalPayout)}>Export to Google Sheets</button>
+      <div style={{display: "flex", justifyContent: "space-between"}}>
+        <button style={styles.button} onClick={() => exportToPDF(payoutDetails, totalPayout)}>
+          Export to PDF
+        </button>
+        <button style={styles.button} onClick={() => exportToCSV(payoutDetails, totalPayout)}>
+          Export to CSV
+        </button>
+        <button style={styles.button} onClick={() => exportToGoogleSheets(payoutDetails, totalPayout)}>
+          Export to Google Sheets
+        </button>
+      </div>
     </div>
   );
 }

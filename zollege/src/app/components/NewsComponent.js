@@ -52,6 +52,10 @@ export default function NewsComponent() {
         router.push("/");
     };
     
+    const handlePayout = () => {
+        router.push("/payout");
+    };
+    
     const applyFilters = () => {
         let filtered = [...articles];
 
@@ -174,7 +178,7 @@ export default function NewsComponent() {
             <h1 style={{ paddingBottom: "20px", display: "flex", justifyContent: "center", paddingTop: "20px" }}>News and Blogs</h1>
             <div style={{ display: "flex", justifyContent: "space-evenly", paddingBottom: "20px", cursor: "pointer" }}>
                 <h5 onClick={handleLogout}>Logout</h5>
-                <h5>PayOut Calculator</h5>
+                <h5 onClick={handlePayout}>PayOut Calculator</h5>
             </div>
 
             {/* Error Message Display */}
