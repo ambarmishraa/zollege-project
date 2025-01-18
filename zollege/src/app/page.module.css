@@ -237,6 +237,31 @@ a.secondary {
   padding-bottom: 15px;
 }
 
+.filter{
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.articles{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.articlesBox{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  width: 20%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #333;
+  background: linear-gradient(45deg, #ffe680, #ffb380);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
 @media (max-width: 768px) {
 
   .dashboard{
@@ -269,4 +294,20 @@ a.secondary {
     display: flex;
     justify-content: center;
   } 
+
+  .filter{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .articles{
+    display: unset;
+  }
+
+  .articlesBox{
+    margin: 20px auto;
+    width: 90%;
+  }
 }

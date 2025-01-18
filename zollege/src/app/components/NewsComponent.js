@@ -224,7 +224,7 @@ export default function NewsComponent() {
             </div>
 
             {/* Filters */}
-            <div style={{ paddingBottom: "20px", display: "flex", justifyContent: "space-evenly" }} >
+            <div className={styles.filter}  >
                 <input
                     style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
                     type="text"
@@ -263,22 +263,12 @@ export default function NewsComponent() {
 
 
             {/* Articles */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "center" }}>
+            <div className={styles.articles}>
                 {filteredArticles.length > 0 ? (
                     filteredArticles.map((article, index) => (
                         <div
                             key={index}
-                            style={{
-                                border: "1px solid #ccc",
-                                padding: "10px",
-                                margin: "10px",
-                                width: "20%", // Adjust width to make space for 4 boxes in a row
-                                boxSizing: "border-box", // Ensure padding and border are included in width calculation
-                                borderRadius: "10px",
-                                color: "#333",
-                                background: "linear-gradient(45deg, #ffe680, #ffb380)",
-                                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
-                            }}
+                            className={styles.articlesBox}
                         >
                             <h3 style={{ marginBottom: "10px" }}>{article.title}</h3>
                             <p style={{ marginBottom: "10px" }}>{article.description}</p>
