@@ -2,6 +2,7 @@
 
 "use client";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from "chart.js";
@@ -165,6 +166,10 @@ export default function NewsComponent() {
     return (
         <div className={styles.productListing}>
             <h1 style={{ paddingBottom: "20px", display: "flex", justifyContent: "center", paddingTop: "20px" }}>News and Blogs</h1>
+            <div style={{display:"flex", justifyContent:"space-evenly", paddingBottom:"20px", cursor:"pointer"}}>
+                <h5>Logout</h5>
+                <h5>PayOut Calculator</h5>
+            </div>
 
             {/* Error Message Display */}
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
