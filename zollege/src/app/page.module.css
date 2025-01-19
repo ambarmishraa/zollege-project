@@ -241,6 +241,7 @@ a.secondary {
   padding-bottom: 20px;
   display: flex;
   justify-content: space-evenly;
+  color: black;
 }
 
 .articles{
@@ -310,4 +311,5 @@ a.secondary {
     margin: 20px auto;
     width: 90%;
   }
+
 }

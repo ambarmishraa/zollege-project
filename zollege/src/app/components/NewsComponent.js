@@ -226,21 +226,21 @@ export default function NewsComponent() {
             {/* Filters */}
             <div className={styles.filter}  >
                 <input
-                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
+                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px",color:"black" }}
                     type="text"
                     placeholder="Search by Author"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                 />
                 <input
-                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
+                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px",color:"black"  }}
                     type="text"
                     placeholder="Search by Type (e.g., news, blog)"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                 />
                 <input
-                    style={{ borderRadius: "10px", border: "none", padding: "10px" }}
+                    style={{ borderRadius: "10px", border: "none", padding: "10px"  }}
                     type="date"
                     value={dateRange.start}
                     onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
@@ -252,7 +252,7 @@ export default function NewsComponent() {
                     onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
                 />
                 <input
-                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" }}
+                    style={{ borderRadius: "10px", backgroundColor: "white", border: "none", padding: "10px" ,color:"black" }}
                     type="text"
                     placeholder="Search by Keyword"
                     value={searchQuery}

@@ -49,7 +49,7 @@ export default function HomePage() {
         setMessage("Account created successfully!");
 
         // Redirect to the News page on successful login
-        router.push("/component/news"); // Adjusted path
+        router.push("/components"); // Adjusted path
       }
     } catch (error) {
       console.error("Error during Google sign-in:", error.message);
